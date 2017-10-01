@@ -1,5 +1,6 @@
 package pl.edu.pjatk.tau.luke.service;
 
+import com.google.common.base.Optional;
 import java.util.List;
 import pl.edu.pjatk.tau.luke.domain.Expenses;
 
@@ -9,13 +10,13 @@ import pl.edu.pjatk.tau.luke.domain.Expenses;
  */
 public interface ExpensesService {
     
-    void add(Expenses expenses);
+    Expenses add(Expenses expenses);
     
-    Expenses get(int id) throws IllegalArgumentException;
+    Optional<Expenses> get(int id);
     
     List<Expenses> getAll();
     
-    void update(Expenses expenses);
+    Expenses update(Expenses expenses) throws IllegalArgumentException;
     
     void delete(int id);
     
