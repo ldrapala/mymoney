@@ -9,7 +9,7 @@ import java.util.Date;
 public class Expenses {
     
     private int id;
-    private int amount;
+    private long amount;
     private Date date;
     private String category;
     private String details;
@@ -22,11 +22,11 @@ public class Expenses {
         this.id = id;
     }
 
-    public int getAmount() {
+    public long getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(long amount) {
         this.amount = amount;
     }
 
