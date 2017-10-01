@@ -118,6 +118,6 @@ public class ExpensesServiceTest {
     }
 
     private ExpensesService getExpensesService() {
-        return null;
+        return new ExpensesServiceImpl();
     }
 }
