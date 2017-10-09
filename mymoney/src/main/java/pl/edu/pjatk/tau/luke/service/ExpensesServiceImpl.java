@@ -18,10 +18,11 @@ public class ExpensesServiceImpl implements ExpensesService {
 
     @Override
     public Expenses add(Expenses expenses) {
-        expenses.setId(idCounter);
-        db.put(idCounter, expenses);
+        Expenses entity = copy(expenses);
+        entity.setId(idCounter);
+        db.put(idCounter, entity);
         idCounter++;
-        return expenses;
+        return entity;
     }
 
     @Override
@@ -42,12 +43,23 @@ public class ExpensesServiceImpl implements ExpensesService {
         if(!db.containsKey(expenses.getId())){
             throw new IllegalArgumentException("No id in database: "+expenses.getId());
         }
-        return db.get(expenses.getId());
+        Expenses entity = copy(expenses);
+        return db.put(entity.getId(), entity);
     }
 
     @Override
     public void delete(int id) {
         db.remove(id);
+    }
+    
+    private Expenses copy(Expenses expenses){
+        Expenses result = new Expenses();
+        result.setId(expenses.getId());
+        result.setAmount(expenses.getAmount());
+        result.setCategory(expenses.getCategory());
+        result.setDate(expenses.getDate());
+        result.setDetails(expenses.getDetails());
+        return result;
     }
     
 }

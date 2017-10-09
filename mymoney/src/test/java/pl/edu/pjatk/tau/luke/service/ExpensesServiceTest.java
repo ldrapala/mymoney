@@ -78,15 +78,15 @@ public class ExpensesServiceTest {
         expenses.setDate(new Date());
         expenses.setCategory("Gift");
         expenses.setDetails("Watch");
-        unitUnderTest.add(expenses);
-        expenses.setAmount(350*100);
-        Expenses entityUpdated = unitUnderTest.update(expenses);
+        Expenses entity = unitUnderTest.add(expenses);
+        entity.setAmount(350*100);
+        Expenses entityUpdated = unitUnderTest.update(entity);
         assertNotNull(entityUpdated);
         assertNotNull(entityUpdated.getId());
-        assertEquals(expenses.getAmount(), entityUpdated.getAmount());
-        assertEquals(expenses.getDate(), entityUpdated.getDate());
-        assertEquals(expenses.getCategory(), entityUpdated.getCategory());
-        assertEquals(expenses.getDetails(), entityUpdated.getDetails());
+        assertEquals(entity.getAmount(), entityUpdated.getAmount());
+        assertEquals(entity.getDate(), entityUpdated.getDate());
+        assertEquals(entity.getCategory(), entityUpdated.getCategory());
+        assertEquals(entity.getDetails(), entityUpdated.getDetails());
         assertEquals(1, unitUnderTest.getAll().size());
     }
 
