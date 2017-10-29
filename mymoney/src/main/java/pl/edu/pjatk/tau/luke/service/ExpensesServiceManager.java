@@ -27,7 +27,6 @@ public class ExpensesServiceManager {
         for (Expenses expenses : expensesService.getAll()) {
             Matcher matcher = pattern.matcher(expenses.getCategory());
             boolean matches = matcher.matches();
-            System.out.println("MATCHES: "+matches);
             if (matches) {
                 result.add(expenses);
             }
