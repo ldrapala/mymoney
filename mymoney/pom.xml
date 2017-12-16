@@ -7,6 +7,14 @@
     <version>1.0-SNAPSHOT</version>
     <name>mymoney</name>
     <url>http://maven.apache.org</url>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jetty.version>9.2.2.v20140723</jetty.version>
+        <failsafe.version>2.17</failsafe.version>
+        <junit.version>4.12-beta-1</junit.version>
+        <phantomjs.version>1.9.7</phantomjs.version>
+        <phantomjs.plugin.version>0.4</phantomjs.plugin.version>        
+    </properties>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -17,7 +25,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>19.0</version>
+            <version>23.0</version>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
@@ -36,18 +44,60 @@
             <version>1.2.5</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>1.7.2</version>
+        </dependency>       
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>phantomjsdriver</artifactId>
+            <version>1.4.3</version>
+        </dependency>
     </dependencies>
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.7.0</version>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.klieber</groupId>
+                    <artifactId>phantomjs-maven-plugin</artifactId>
+                    <version>0.7</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>install</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <version>1.9.2</version>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.17</version>
+                    <configuration>
+                        <systemPropertyVariables>
+                            <phantomjs.binary>${phantomjs.binary}</phantomjs.binary>
+                        </systemPropertyVariables>
+                    </configuration>
+                </plugin> 
+            </plugins>
+        </pluginManagement>
     </build>
 </project>
