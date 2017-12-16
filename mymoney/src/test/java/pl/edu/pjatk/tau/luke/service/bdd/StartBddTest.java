@@ -7,7 +7,8 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         format = {"pretty", "html:target/cucumber"},
-        features = {"classpath:DeleteRecords.feature"}
+        features = {"classpath:DeleteRecords.feature",
+        "classpath:FindExpensesByRegex.feature"}
 )
 
 public class StartBddTest {
