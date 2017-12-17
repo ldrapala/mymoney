@@ -38,16 +38,16 @@ public class StartPage {
         this.driver = driver;
     }
 
-    public WebElement getPhoneNo() {
-        return phoneNo;
+    public boolean isPhoneNumberExists() {
+        return phoneNo != null;
     }
 
-    public WebElement getLoremSlider() {
-        return loremSlider;
+    public boolean isLoremSliderExists() {
+        return loremSlider != null;
     }
 
-    public WebElement getBasketLink() {
-        return basketLink;
+    public boolean isBasketLinkExists() {
+        return basketLink != null;
     }
 
     public void open() {

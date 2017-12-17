@@ -22,10 +22,7 @@ import static org.junit.Assert.assertTrue;
 
 public class StartPageTest {
 
-    private final static String EXPECTED_URL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
     private final static String PASSWORD = "secret";
-    private final static String WIN_PATH = ".\\target\\screenshot.png";
-    private final static String LINUX_PATH = ".//target//screenshot.png";
     private static WebDriver driver;
     private StartPage startPage;
     private LoginPage loginPage;
@@ -59,19 +56,19 @@ public class StartPageTest {
     @Test
     public void checkPhoneNoVisibility() {
         startPage.open();
-        assertNotNull(startPage.getPhoneNo());
+        assertTrue(startPage.isPhoneNumberExists());
     }
 
     @Test
     public void checkSliderVisibility() {
         startPage.open();
-        assertNotNull(startPage.getLoremSlider());
+        assertNotNull(startPage.isLoremSliderExists());
     }
 
     @Test
     public void checkBasketVisibility() {
         startPage.open();
-        assertNotNull(startPage.getBasketLink());
+        assertNotNull(startPage.isBasketLinkExists());
     }
 
     @Test
@@ -96,9 +93,9 @@ public class StartPageTest {
     private String getFilePath() {
         String os = System.getProperty("os.name");
         if (os.startsWith("Windows")) {
-            return WIN_PATH;
+            return  ".\\target\\screenshot.png";
         } else {
-            return LINUX_PATH;
+            return ".//target//screenshot.png";
         }
     }
 
@@ -106,8 +103,8 @@ public class StartPageTest {
     public void checkSignIn() throws InterruptedException {
         startPage.open();
         startPage.clickSignIn();
-        Thread.sleep(200);
-        assertEquals(EXPECTED_URL, driver.getCurrentUrl());
+        String url = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+        assertEquals(url, driver.getCurrentUrl());
     }
 
     @Test
@@ -115,7 +112,7 @@ public class StartPageTest {
         loginPage.open();
         loginPage.setEmailInput(EMAIL);
         loginPage.clickSubmitCreateButon();
-        assertTrue(loginPage.getErrorMessage().isDisplayed());
+        assertTrue(loginPage.isErrorMessageVisible());
     }
 
     @Test
@@ -135,10 +132,10 @@ public class StartPageTest {
         registerPage.setZipCode("12345");
         registerPage.setCountry("United States");
         registerPage.setMobilePhone("100200300");
-        registerPage.getRegistrationForm().click();
+        registerPage.clickLogoutButton();
 
-        assertTrue(registerPage.getLogoutButton().isDisplayed());
-        registerPage.getLogoutButton().click();
+        assertTrue(registerPage.isLogoutButtonVisible());
+        registerPage.clickLogoutButton();
 
     }
 
@@ -153,7 +150,6 @@ public class StartPageTest {
     public void checkCorrectAuthentication() throws InterruptedException {
         loginPage.open();
         loginPage.loginIntoAccount(EMAIL, PASSWORD);
-        assertTrue(loginPage.isLoginSuccessful());
     }
 
 }

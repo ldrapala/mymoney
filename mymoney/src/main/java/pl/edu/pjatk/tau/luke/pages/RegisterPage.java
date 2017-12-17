@@ -16,7 +16,7 @@ public class RegisterPage {
     public void setGender(String gender) {
         if ("M".equals(gender)) {
             driver.findElement(By.id("id_gender1")).click();
-        } else if ("W".equals(gender)) {
+        } else if ("F".equals(gender)) {
             driver.findElement(By.id("id_gender2")).click();
         }
     }
@@ -72,11 +72,27 @@ public class RegisterPage {
         driver.findElement(By.id("phone_mobile")).sendKeys(mobileNo);
     }
 
-    public WebElement getRegistrationForm() {
+    public void clickSubmitAccountButton() {
+        getSubmitAccountButton().click();
+    }
+
+    public void clickLogoutButton() {
+        getLogoutButton().click();
+    }
+
+    public boolean isLogoutButtonVisible() {
+        return getLogoutButton().isDisplayed();
+    }
+
+    public boolean isRegisterButtonVisible() {
+        return getSubmitAccountButton().isDisplayed();
+    }
+    
+    private WebElement getSubmitAccountButton(){
         return driver.findElement(By.id("submitAccount"));
     }
 
-    public WebElement getLogoutButton() {
+    private WebElement getLogoutButton() {
         return driver.findElement(
                 By.cssSelector("#header > div.nav > div > div > nav > div:nth-child(2) > a"));
     }
