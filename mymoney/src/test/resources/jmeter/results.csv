@@ -1,0 +1,2 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,Latency,IdleTime,Connect
+1516501251563,458769,addPersonRequest,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Ustawienia 1-1,text,false,,2777,0,1,1,0,0,2
